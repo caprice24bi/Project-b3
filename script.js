@@ -45,7 +45,7 @@ function ConfettiPiece(x, y, color) {
   this.x = x;
   this.y = y;
   this.color = color;
-  this.size = Math.random() * 6 + 4;
+  this.size = Math.random() * 6 + 4; // ukuran random
   this.speedY = Math.random() * 3 + 2;
   this.speedX = (Math.random() - 0.5) * 2;
 }
@@ -54,13 +54,7 @@ function launchConfetti() {
   for (let i = 0; i < 150; i++) {
     let x = Math.random() * confettiCanvas.width;
     let y = -10;
-    let colors = [
-      ["#ff7675", "#ffe6e6"], // merah muda → putih
-      ["#74b9ff", "#e3f2fd"], // biru → putih
-      ["#ffeaa7", "#fff8e1"], // kuning → putih
-      ["#55efc4", "#e0f7f4"], // hijau mint → putih
-      ["#fd79a8", "#fde2f2"]  // pink → putih
-    ];
+    let colors = ["#ff7675", "#74b9ff", "#ffeaa7", "#55efc4", "#fd79a8"];
     let color = colors[Math.floor(Math.random() * colors.length)];
     confettiPieces.push(new ConfettiPiece(x, y, color));
   }
@@ -70,24 +64,18 @@ function drawConfetti() {
   confettiCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
   for (let i = 0; i < confettiPieces.length; i++) {
     let p = confettiPieces[i];
+    confettiCtx.fillStyle = p.color;
 
-    // bikin gradasi radial (dalam → luar)
-    let gradient = confettiCtx.createRadialGradient(
-      p.x, p.y, p.size * 0.2,   // titik dalam kecil
-      p.x, p.y, p.size          // titik luar
-    );
-    gradient.addColorStop(0, p.color[0]); // warna inti
-    gradient.addColorStop(1, p.color[1]); // warna pinggir
-
-    confettiCtx.fillStyle = gradient;
+    // hanya lingkaran
     confettiCtx.beginPath();
     confettiCtx.arc(p.x, p.y, p.size, 0, 2 * Math.PI);
     confettiCtx.fill();
 
-    // gerakan jatuh
+    // gerakan
     p.y += p.speedY;
     p.x += p.speedX;
 
+    // hapus kalau sudah keluar layar
     if (p.y > confettiCanvas.height) {
       confettiPieces.splice(i, 1);
       i--;
