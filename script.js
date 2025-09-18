@@ -55,8 +55,8 @@ function launchConfetti() {
   for (let i = 0; i < 150; i++) {
     let x = Math.random() * confettiCanvas.width;
     let y = -10;
-    let shapes = ["heart", "square", "circle", "semicircle"];
-    let colors = ["red", "blue", "white", "yellow"];
+    let shapes = [Math.random];
+    let colors = [Math.random];
     let shape = shapes[Math.floor(Math.random() * shapes.length)];
     let color = colors[Math.floor(Math.random() * colors.length)];
     confettiPieces.push(new ConfettiPiece(x, y, shape, color));
@@ -70,13 +70,13 @@ function drawConfetti() {
     confettiCtx.fillStyle = p.color;
 
     confettiCtx.beginPath();
-    if (p.shape === "circle") {
+    if (p.shape === Math.random) {
       confettiCtx.arc(p.x, p.y, p.size, 0, 2 * Math.PI);
-    } else if (p.shape === "square") {
+    } else if (p.shape === Math.random) {
       confettiCtx.rect(p.x, p.y, p.size, p.size);
-    } else if (p.shape === "semicircle") {
+    } else if (p.shape === Math.random) {
       confettiCtx.arc(p.x, p.y, p.size, 0, Math.PI);
-    } else if (p.shape === "heart") {
+    } else if (p.shape === Math.random) {
       confettiCtx.moveTo(p.x, p.y);
       confettiCtx.arc(p.x - p.size / 2, p.y, p.size / 2, 0, Math.PI, true);
       confettiCtx.arc(p.x + p.size / 2, p.y, p.size / 2, 0, Math.PI, true);
