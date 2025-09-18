@@ -35,6 +35,13 @@ function drawCake() {
       ctx.ellipse(x, y - 10, 6, 12, 0, 0, Math.PI * 2);
       ctx.fillStyle = "orange";
       ctx.fill();
+       animation: flicker 0.2s infinite alternate ease-in-out;
+  box-shadow: 0 0 20px rgba(255, 180, 50, 0.6);
+}
+
+@keyframes flicker {
+  from { transform: translateX(-50%) rotate(-3deg) scale(1); }
+  to { transform: translateX(-50%) rotate(3deg) scale(1.1); }
     }
   }
 }
