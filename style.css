@@ -30,6 +30,33 @@ h1 {
   pointer-events: none;
 }
 
+.candle {
+  width: 20px;
+  height: 80px;
+  background: linear-gradient(to bottom, #ffffff, #ddd);
+  border-radius: 6px;
+  margin: 100px auto;
+  position: relative;
+}
+
+.flame {
+  width: 30px;
+  height: 40px;
+  background: radial-gradient(circle at 40% 35%, #fffad1 0%, #ffd84d 35%, #ff9e3a 70%, transparent 100%);
+  border-radius: 50% 50% 40% 40%;
+  position: absolute;
+  top: -35px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: flicker 0.2s infinite alternate ease-in-out;
+  box-shadow: 0 0 20px rgba(255, 180, 50, 0.6);
+}
+
+@keyframes flicker {
+  from { transform: translateX(-50%) rotate(-3deg) scale(1); }
+  to { transform: translateX(-50%) rotate(3deg) scale(1.1); }
+}
+
 .popup {
   position: fixed;
   top: 0;
